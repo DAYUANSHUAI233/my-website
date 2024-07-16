@@ -401,50 +401,59 @@
     </div>
     <script>
         // 获取模态框
-        var infoModal = document.getElementById("infoModal");
-        var pluginModal = document.getElementById("pluginModal");
-        var pluginIframe = document.getElementById("pluginIframe");
+var infoModal = document.getElementById("infoModal");
+var pluginModal = document.getElementById("pluginModal");
+var pluginIframe = document.getElementById("pluginIframe");
 
-        // 获取按钮，打开模态框
-        var infoBtn = document.getElementById("infoButton");
+// 获取按钮，打开模态框
+var infoBtn = document.getElementById("infoButton");
 
-        // 获取 <span> 元素，关闭模态框
-        var closeButtons = document.getElementsByClassName("close");
+// 获取 <span> 元素，关闭模态框
+var closeButtons = document.getElementsByClassName("close");
 
-        // 点击按钮打开模态框
-        infoBtn.onclick = function () {
-            infoModal.style.display = "block";
-        }
+// 点击按钮打开模态框
+infoBtn.onclick = function () {
+    infoModal.style.display = "block";
+}
 
-        // 点击 <span> 元素关闭模态框
-        for (var i = 0; i < closeButtons.length; i++) {
-            closeButtons[i].onclick = function () {
-                infoModal.style.display = "none";
-                pluginModal.style.display = "none";
-                pluginIframe.src = "";
-            }
-        }
+// 点击 <span> 元素关闭模态框
+for (var i = 0; i < closeButtons.length; i++) {
+    closeButtons[i].onclick = function () {
+        infoModal.style.display = "none";
+        pluginModal.style.display = "none";
+        pluginIframe.src = "";
+    }
+}
 
-        // 点击模态框外部关闭模态框
-        window.onclick = function (event) {
-            if (event.target == infoModal) {
-                infoModal.style.display = "none";
-            }
-            if (event.target == pluginModal) {
-                pluginModal.style.display = "none";
-                pluginIframe.src = "";
-            }
-        }
+// 点击模态框外部关闭模态框
+window.onclick = function (event) {
+    if (event.target == infoModal) {
+        infoModal.style.display = "none";
+    }
+    if (event.target == pluginModal) {
+        pluginModal.style.display = "none";
+        pluginIframe.src = "";
+    }
+}
 
-        // 给插件图片添加点击事件
-        var pluginImages = document.querySelectorAll('.plugin-card img');
-        pluginImages.forEach(function (img) {
-            img.onclick = function () {
-                var url = img.getAttribute('data-url');
-                pluginIframe.src = url;
-                pluginModal.style.display = "block";
-            }
-        });
+// 给插件图片添加点击事件
+var pluginImages = document.querySelectorAll('.plugin-card img');
+pluginImages.forEach(function (img) {
+    img.onclick = function () {
+        var url = img.getAttribute('data-url');
+        pluginIframe.src = url;
+        pluginModal.style.display = "block";
+    }
+});
+
+// 阻止作者头像点击事件
+var authorAvatars = document.querySelectorAll('.plugin-card-content .author img');
+authorAvatars.forEach(function (avatar) {
+    avatar.onclick = function (event) {
+        event.stopPropagation();
+    }
+});
+
     </script>
 </body>
 
